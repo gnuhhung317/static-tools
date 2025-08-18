@@ -1,0 +1,19 @@
+:root{--bg:#fff;--muted:#6b7280;--accent:#0366d6}
+*{box-sizing:border-box}
+body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#111; margin:0; padding:20px}
+.container{max-width:980px;margin:0 auto}
+h1{margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 16px}
+.form-row{margin-bottom:12px}
+label{display:block;font-weight:600;margin-bottom:6px}
+input[type=text], textarea, select{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:6px;font-family:monospace}
+textarea{min-height:280px;resize:vertical}
+.controls{display:flex;gap:8px}
+button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+button.muted{background:#e5e7eb;color:#111}
+.result{margin-top:18px}
+.result-pre{background:#f6f8fa;border:1px solid #e1e4e8;padding:12px;overflow:auto;white-space:pre-wrap}
+#resultMeta{color:var(--muted);margin-bottom:6px}
+footer{margin-top:18px;color:var(--muted)}
+code{background:#fafafa;padding:2px 6px;border-radius:4px;font-family:monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1220;--muted:#94a3b8;--accent:#58a6ff} body{color:#e6eef8} textarea, input, select{background:#071025;color:#e6eef8;border-color:#113244} .result-pre{background:#071025;border-color:#113244}}
