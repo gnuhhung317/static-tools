@@ -3,6 +3,7 @@ import { modules } from './modules/index.js';
 const moduleSelect = document.getElementById('moduleSelect');
 const rawEl = document.getElementById('rawHtml');
 const baseUrlEl = document.getElementById('baseUrl');
+const removeFragmentsEl = document.getElementById('removeFragments');
 const runBtn = document.getElementById('runBtn');
 const clearBtn = document.getElementById('clearBtn');
 const resultPre = document.getElementById('resultPre');
@@ -28,6 +29,7 @@ async function run(){
   resultMeta.textContent = '';
   const raw = rawEl.value || '';
   const baseUrl = baseUrlEl.value || '';
+  const removeFragments = removeFragmentsEl ? removeFragmentsEl.checked : false;
   const modulePath = moduleSelect.value;
   if (!modulePath) return;
   try {
@@ -36,7 +38,7 @@ async function run(){
       resultMeta.textContent = 'Selected module does not export extract(raw, baseUrl)';
       return;
     }
-  let items = mod.extract(raw, baseUrl);
+  let items = mod.extract(raw, baseUrl, { removeFragments });
   // ensure array
   if (!Array.isArray(items)) {
       resultMeta.textContent = 'Module returned unexpected result';

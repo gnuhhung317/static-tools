@@ -1,6 +1,6 @@
 // linksExtractor.js
-// Exports: extract(rawHtml, baseUrl) -> Array of sorted unique links
-export function extract(rawHtml, baseUrl = ''){
+// Exports: extract(rawHtml, baseUrl, options) -> Array of sorted unique links
+export function extract(rawHtml, baseUrl = '', options = {}){
   const out = new Set();
   try {
     const parser = new DOMParser();
@@ -16,6 +16,20 @@ export function extract(rawHtml, baseUrl = ''){
         }
       } catch (e) {
         // ignore resolution errors
+      }
+      // Remove fragment if removeFragments option is enabled
+      if (options.removeFragments) {
+        try {
+          const url = new URL(href);
+          url.hash = '';
+          href = url.href;
+        } catch (e) {
+          // If URL parsing fails, try simple string replacement
+          const hashIndex = href.indexOf('#');
+          if (hashIndex !== -1) {
+            href = href.substring(0, hashIndex);
+          }
+        }
       }
       out.add(href);
     }
